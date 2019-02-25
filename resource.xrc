@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="GUIFrame">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>481,466</size>
+		<title>wxWidgets Application Template</title>
+		<aui_managed>0</aui_managed>
+		<object class="wxMenuBar" name="mbar">
+			<label></label>
+			<object class="wxMenu" name="fileMenu">
+				<label>_File</label>
+				<object class="wxMenuItem" name="menuFileQuit">
+					<label>_Quit\tAlt+F4</label>
+					<help>Quit the application</help>
+				</object>
+			</object>
+			<object class="wxMenu" name="helpMenu">
+				<label>_Help</label>
+				<object class="wxMenuItem" name="menuHelpAbout">
+					<label>_About\tF1</label>
+					<help>Show info about this application</help>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="statusBar">
+			<style>wxSTB_SIZEGRIP</style>
+			<fields>2</fields>
+		</object>
+		<object class="wxListCtrl" name="m_listCtrl4">
+			<style>wxLC_ICON</style>
+		</object>
+	</object>
+</resource>
+

@@ -1,0 +1,7 @@
+# compiled output
+/bin
+/obj
+/wx_pch.h.gch
+
+# other output
+CppCheckResults.xml
