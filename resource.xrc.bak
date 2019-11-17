@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+	<object class="wxFrame" name="main_frame">
+		<title>XML Resources Demo</title>
+		<centered>1</centered>
+		<object class="wxMenuBar" name="mbar">
+			<label />
+			<object class="wxMenu" name="fileMenu">
+				<label>_File</label>
+				<object class="wxMenuItem" name="menuFileQuit">
+					<label>_Quit\tAlt+F4</label>
+					<help>Quit the application</help>
+				</object>
+			</object>
+			<object class="wxMenu" name="helpMenu">
+				<label>_Help</label>
+				<object class="wxMenuItem" name="menuHelpAbout">
+					<label>_About\tF1</label>
+					<help>Show info about this application</help>
+				</object>
+			</object>
+		</object>
+		<object class="wxFlexGridSizer">
+			<cols>1</cols>
+			<rows>0</rows>
+			<vgap>0</vgap>
+			<hgap>0</hgap>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
+			<object class="sizeritem">
+				<flag>wxGROW|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+				<border>5</border>
+				<object class="wxTextCtrl" name="message_textctrl">
+					<size>500,280</size>
+					<style>wxTE_MULTILINE</style>
+					<value>Welcome to the wxWidgets XmlResource (XRC) sample! Using wxWidgets XML resources makes your GUI C++ programming much faster and easier.\n\nView the examples under the "Basic" menu to learn how to get up and running with XRC quickly, and later have a look at the examples under the "Advanced" menu for advanced techniques.\n\nThe XML file that described this frame is the sample's frame.xrc file, with the menu in menu.xrc, and the toolbar in toolbar.xrc. The frame XRC file structure is exactly the same as the XRC files for the dialogs, except that the top level node is a wxFrame, not a wxDialog. Each of the other dialog in this example is a separate XRC file, each of which can be examined for how they work.</value>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="statusBar">
+			<style>wxSTB_SIZEGRIP</style>
+			<fields>2</fields>
+		</object>
+	</object>
+</resource>
