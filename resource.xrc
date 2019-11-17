@@ -26,5 +26,29 @@
 			<style>wxSTB_SIZEGRIP</style>
 			<fields>2</fields>
 		</object>
+		<object class="wxFlexGridSizer">
+			<rows>2</rows>
+			<cols>0</cols>
+			<vgap>0</vgap>
+			<hgap>0</hgap>
+			<growablecols>0</growablecols>
+			<growablerows>0,1</growablerows>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxListCtrl" name="m_listCtrl2">
+					<style>wxLC_ICON</style>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxTextCtrl" name="m_textCtrl1">
+					<value></value>
+				</object>
+			</object>
+		</object>
 	</object>
 </resource>

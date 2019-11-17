@@ -23,19 +23,22 @@
 #define idMenuQuit 1000
 #define idMenuAbout 1001
 
-class wxScmNotifierFrame: public wxFrame
+class wxScmNotifierFrame : public wxFrame
 {
 public:
-	wxScmNotifierFrame(wxWindow* parent=(wxWindow *)NULL);
+	wxScmNotifierFrame(wxWindow *parent = (wxWindow *)NULL);
 	virtual ~wxScmNotifierFrame();
 
-private:
-    virtual void OnClose(wxCloseEvent& event);
-    virtual void OnExit(wxCommandEvent& event);
-    virtual void OnAbout(wxCommandEvent& event);
+protected:
+	wxListCtrl *m_pRepoList;
 
-    // Any class wishing to process wxWidgets events must use this macro
-    wxDECLARE_EVENT_TABLE();
+private:
+	virtual void OnClose(wxCloseEvent &event);
+	virtual void OnExit(wxCommandEvent &event);
+	virtual void OnAbout(wxCommandEvent &event);
+
+	// Any class wishing to process wxWidgets events must use this macro
+	wxDECLARE_EVENT_TABLE();
 };
 
 #endif /* WXSCMNOTIFIERFRAME_H_ */

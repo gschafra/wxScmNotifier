@@ -11,33 +11,35 @@
 #include <wx/msgdlg.h>
 
 //helper functions
-enum wxbuildinfoformat {
-    short_f, long_f };
+enum wxbuildinfoformat
+{
+	short_f,
+	long_f
+};
 
 wxString wxbuildinfo(wxbuildinfoformat const format)
 {
-    wxString wxbuild(wxVERSION_STRING);
+	wxString wxbuild(wxVERSION_STRING);
 
-    if (format == long_f )
-    {
+	if (format == long_f)
+	{
 #if defined(__WXMSW__)
-        wxbuild << _T("-Windows");
+		wxbuild << _T("-Windows");
 #elif defined(__WXMAC__)
-        wxbuild << _T("-Mac");
+		wxbuild << _T("-Mac");
 #elif defined(__UNIX__)
-        wxbuild << _T("-Linux");
+		wxbuild << _T("-Linux");
 #endif
 
 #if wxUSE_UNICODE
-        wxbuild << _T("-Unicode build");
+		wxbuild << _T("-Unicode build");
 #else
-        wxbuild << _T("-ANSI build");
+		wxbuild << _T("-ANSI build");
 #endif // wxUSE_UNICODE
-    }
+	}
 
-    return wxbuild;
+	return wxbuild;
 }
-
 
 //-----------------------------------------------------------------------------
 // Event table: connect the events to the handler functions to process them
@@ -52,31 +54,41 @@ wxString wxbuildinfo(wxbuildinfoformat const format)
 // ID name to help new users emphasize this point which is often overlooked
 // when starting out with wxWidgets.
 wxBEGIN_EVENT_TABLE(wxScmNotifierFrame, wxFrame)
-	EVT_MENU(wxID_EXIT,  wxScmNotifierFrame::OnExit)
-    EVT_MENU(wxID_ABOUT, wxScmNotifierFrame::OnAbout)
+	EVT_MENU(wxID_EXIT, wxScmNotifierFrame::OnExit)
+	EVT_MENU(wxID_ABOUT, wxScmNotifierFrame::OnAbout)
 wxEND_EVENT_TABLE()
 
-wxScmNotifierFrame::wxScmNotifierFrame(wxWindow* parent)
+wxScmNotifierFrame::wxScmNotifierFrame(wxWindow *parent)
 {
-    // Load up this frame from XRC. [Note, instead of making a class's
-    // constructor take a wxWindow* parent with a default value of NULL,
-    // we could have just had designed MyFrame class with an empty
-    // constructor and then written here:
-    // wxXmlResource::Get()->LoadFrame(this, (wxWindow* )NULL, "main_frame");
-    // since this frame will always be the top window, and thus parentless.
-    // However, the current approach has source code that can be recycled
-    // for other frames that aren't the top level window.]
-    wxXmlResource::Get()->LoadFrame(this, parent, "main_frame");
+	// Load up this frame from XRC. [Note, instead of making a class's
+	// constructor take a wxWindow* parent with a default value of NULL,
+	// we could have just had designed MyFrame class with an empty
+	// constructor and then written here:
+	// wxXmlResource::Get()->LoadFrame(this, (wxWindow* )NULL, "main_frame");
+	// since this frame will always be the top window, and thus parentless.
+	// However, the current approach has source code that can be recycled
+	// for other frames that aren't the top level window.]
+	wxXmlResource::Get()->LoadFrame(this, parent, "main_frame");
+
+	// Get wxListCtrl
+	m_pRepoList = XRCCTRL(*this, "m_listCtrl2", wxListCtrl);
+	if (m_pRepoList)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			m_pRepoList->InsertItem(i, wxString::Format("Item %d", i));
+		}
+	}
 
 #if wxUSE_STATUSBAR
-    // statusBar->SetStatusText(_("Hello Code::Blocks user!"), 0);
-    // statusBar->SetStatusText(wxbuildinfo(short_f), 1);
+	// statusBar->SetStatusText(_("Hello Code::Blocks user!"), 0);
+	// statusBar->SetStatusText(wxbuildinfo(short_f), 1);
 #endif
 
-    // As we have created the toolbar and status bar after loading the main
-    // frame from resources, we need to readjust its minimal size to fit both
-    // its client area contains and the bars.
-    GetSizer()->SetSizeHints(this);
+	// As we have created the toolbar and status bar after loading the main
+	// frame from resources, we need to readjust its minimal size to fit both
+	// its client area contains and the bars.
+	GetSizer()->SetSizeHints(this);
 }
 
 wxScmNotifierFrame::~wxScmNotifierFrame()
@@ -85,18 +97,17 @@ wxScmNotifierFrame::~wxScmNotifierFrame()
 
 void wxScmNotifierFrame::OnClose(wxCloseEvent &event)
 {
-    Destroy();
+	Destroy();
 }
 
 void wxScmNotifierFrame::OnExit(wxCommandEvent &event)
 {
-    // true is to force the frame to close.
-    Close(true);
+	// true is to force the frame to close.
+	Close(true);
 }
 
 void wxScmNotifierFrame::OnAbout(wxCommandEvent &event)
 {
-    wxString msg = wxbuildinfo(long_f);
-    wxMessageBox(msg, _("Welcome to..."));
+	wxString msg = wxbuildinfo(long_f);
+	wxMessageBox(msg, _("Welcome to..."));
 }
-
